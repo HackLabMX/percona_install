@@ -115,8 +115,8 @@ if [ "${repo_percona_install}" == "y" ];then
        else
        DEDICATED="0.5"
      fi
-       rpm -Uvh http://www.percona.com/redir/downloads/percona-release/redhat/latest/percona-release-0.1-3.noarch.rpm
-       rpm -q percona-release
+       rpm -Uvh http://www.percona.com/redir/downloads/percona-release/redhat/latest/percona-release-0.1-3.noarch.rpm  > /dev/null 2>&1
+       rpm -q percona-release  > /dev/null 2>&1
      if [ "$?" = 0 ] # if repository installed then install package
         then
           echo
@@ -152,6 +152,7 @@ if [ "${repo_percona_install}" == "y" ];then
               BLUETXT "#############################################################"
               echo
                 echo
+                service mysql restart
                 mysql_secure_installation
                 echo
               echo
