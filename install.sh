@@ -15,13 +15,13 @@ if [[ ${EUID} -ne 0 ]]; then
   else
   echo "------> PASS: ROOT!"
 fi
-# do we have CentOS 6?
-if grep "CentOS Linux release 6" /etc/redhat-release  > /dev/null 2>&1; then
-  echo "------> PASS: CENTOS RELEASE 6"
+# do we have CentOS?
+if [ -f /etc/redhat-release ]; then
+  echo "------> PASS: CENTOS RELEASE"
   else
   echo
   echo "------> ERROR: UNABLE TO DETERMINE DISTRIBUTION TYPE."
-  echo "------> THIS CONFIGURATION FOR CENTOS 6."
+  echo "------> THIS CONFIGURATION FOR CENTOS"
   echo
   exit 1
 fi
