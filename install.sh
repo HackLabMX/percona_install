@@ -1,9 +1,5 @@
 #!/bin/bash
-#====================================================================#
-#  MagenX                                                            #
-#  PERCONA DATABASE INSTALLATION                                     #
-#  admin@magenx.com                                                  #
-#====================================================================#
+
 # Simple colors
 RED="\e[31;40m"
 GREEN="\e[32;40m"
@@ -97,6 +93,11 @@ if [[ ${RESULT} == up ]]; then
   exit 1
 fi
 echo
+YELLOWTXT #====================================================================#
+YELLOWTXT #  MagenX                                                            #
+YELLOWTXT #  PERCONA DATABASE INSTALLATION                                     #
+YELLOWTXT #  admin@magenx.com                                                  #
+YELLOWTXT #====================================================================#
 echo
 echo "============================================================================="
 echo
