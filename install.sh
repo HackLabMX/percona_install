@@ -98,7 +98,6 @@ if [ "${repo_percona_install}" == "y" ];then
               echo "---> DOWNLOADING my.cnf FILE FROM MAGENX GITHUB REPOSITORY"
               wget -qO /etc/my.cnf https://raw.githubusercontent.com/magenx/magento-mysql/master/my.cnf/my.cnf
               echo
-                #######################################################################################################################################
                 echo
                  echo "---> WE NEED TO CORRECT YOUR innodb_buffer_pool_size"
                  IBPS=$(echo "${DEDICATED}*$(awk '/MemTotal/ { print $2 / (1024*1024)}' /proc/meminfo | cut -d'.' -f1)" | bc | xargs printf "%1.0f")
@@ -106,7 +105,6 @@ if [ "${repo_percona_install}" == "y" ];then
                  echo
                  echo "---> YOUR innodb_buffer_pool_size = ${IBPS}G"
                 echo
-                #######################################################################################################################################
               echo
               MYSQL_ROOT_PASSGEN=$(head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9~!@$%&'  | fold -w 15 | head -n 1)
               echo "#############################################################"
