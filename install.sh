@@ -126,7 +126,7 @@ if [ "${repo_percona_install}" == "y" ];then
               YELLOWTXT "---> INSTALLATION OF PERCONA 5.6 DATABASE:"
               echo
               yum -y install Percona-Server-client-56 Percona-Server-server-56
-              rpm -q Percona-Server-client-56 Percona-Server-server-56
+              rpm --quiet -q Percona-Server-client-56 Percona-Server-server-56
         if [ "$?" = 0 ] # if package installed then configure
           then
             echo
