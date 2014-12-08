@@ -1,2 +1,2 @@
-percona_install
+INSTALLING PERCONA SERVER 5.6 
 ===============
