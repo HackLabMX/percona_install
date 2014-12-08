@@ -62,7 +62,7 @@ if [ "${repo_percona_install}" == "y" ];then
               echo
               chkconfig mysql on
               echo
-              echo "---> DOWNLOADING MY.CNF FILE FROM MAGENX GITHUB REPOSITORY"
+              echo "---> DOWNLOADING my.cnf FILE FROM MAGENX GITHUB REPOSITORY"
               wget -qO /etc/my.cnf https://raw.githubusercontent.com/magenx/magento-mysql/master/my.cnf/my.cnf
               echo
                 #######################################################################################################################################
