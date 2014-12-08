@@ -41,9 +41,9 @@ function BLUEBG() {
 }
 clear
 YELLOWTXT "#====================================================================#"
-YELLOWTXT "#  MagenX                                                            #"
-YELLOWTXT "#  PERCONA DATABASE INSTALLATION                                     #"
-YELLOWTXT "#  admin@magenx.com                                                  #"
+YELLOWTXT "  MagenX                                                            "
+YELLOWTXT "  PERCONA DATABASE INSTALLATION                                     "
+YELLOWTXT "  admin@magenx.com                                                  "
 YELLOWTXT "#====================================================================#"
 echo
 # root?
@@ -99,7 +99,7 @@ if [[ ${RESULT} == up ]]; then
 fi
 echo
 echo
-echo "============================================================================="
+YELLOWTXT "#====================================================================#"
 echo
 echo -n "------> START PERCONA REPOSITORY AND PERCONA DATABASE INSTALLATION? [y/n][n]:"
 read repo_percona_install
