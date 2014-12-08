@@ -9,23 +9,55 @@ echo
 # root?
 if [[ ${EUID} -ne 0 ]]; then
   echo
-  echo "ERROR: THIS SCRIPT MUST BE RUN AS ROOT!"
+  echo "------> ERROR: THIS SCRIPT MUST BE RUN AS ROOT!"
   echo "------> USE SUPER-USER PRIVILEGES."
   exit 1
   else
-  echo "PASS: ROOT!"
+  echo "------> PASS: ROOT!"
 fi
 # do we have CentOS 6?
 if grep "CentOS Linux release 6" /etc/redhat-release  > /dev/null 2>&1; then
-  echo "PASS: CENTOS RELEASE 6"
+  echo "------> PASS: CENTOS RELEASE 6"
   else
   echo
-  echo "ERROR: UNABLE TO DETERMINE DISTRIBUTION TYPE."
+  echo "------> ERROR: UNABLE TO DETERMINE DISTRIBUTION TYPE."
   echo "------> THIS CONFIGURATION FOR CENTOS 6."
   echo
   exit 1
 fi
-echo
+# check if memory is enough
+TOTALMEM=$(awk '/MemTotal/ { print $2 }' /proc/meminfo)
+if [ "${TOTALMEM}" -gt "3000000" ]; then
+  echo "------> PASS: YOU HAVE ${TOTALMEM} kB OF RAM"
+  else
+  echo
+  echo "------> WARNING: YOU HAVE LESS THAN 3GB OF RAM"
+fi
+# some selinux, sir?
+SELINUX=$(awk '/^SELINUX=/'  /etc/selinux/config)
+if [ "${SELINUX}" != "SELINUX=disabled" ]; then
+  echo
+  echo "------> ERROR: SELINUX IS ENABLED"
+  echo "------> PLEASE CHECK YOUR SELINUX SETTINGS"
+  echo
+  exit 1
+  else
+  echo "------> PASS: SELINUX IS DISABLED"
+fi
+# network is up?
+host1=74.125.24.106
+host2=208.80.154.225
+RESULT=$(((ping -w3 -c2 ${host1} || ping -w3 -c2 ${host2}) > /dev/null 2>&1) && echo "up" || (echo "down" && exit 1))
+if [[ ${RESULT} == up ]]; then
+  echo "------> PASS: NETWORK IS UP. GREAT, LETS START!"
+  else
+  echo
+  echo "------> ERROR: NETWORK IS DOWN?"
+  echo "------> PLEASE CHECK YOUR NETWORK SETTINGS."
+  echo
+  echo
+  exit 1
+fi
 echo
 echo
 echo "============================================================================="
@@ -34,6 +66,7 @@ echo -n "---> START PERCONA REPOSITORY AND PERCONA DATABASE INSTALLATION? [y/n][
 read repo_percona_install
 if [ "${repo_percona_install}" == "y" ];then
   echo
+  rpm -qa | grep -qw bc || yum -q -y install bc
   echo "---> INSTALLATION OF PERCONA REPOSITORY:"
   echo
   echo -n "---> IS THIS SERVER DEDICATED FOR DATABASE ONLY?  [y/n][y]:"
