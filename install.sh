@@ -58,7 +58,7 @@ if [ "${repo_percona_install}" == "y" ];then
         if [ "$?" = 0 ] # if package installed then configure
           then
             echo
-              echo "---> DATABSE HAS BEEN INSTALLED  -  OK"
+              echo "---> PERCONA DATABASE HAS BEEN INSTALLED  -  OK"
               echo
               chkconfig mysql on
               echo
