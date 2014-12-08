@@ -65,7 +65,7 @@ if [ "${repo_percona_install}" == "y" ];then
               echo "---> DOWNLOADING MY.CNF FILE FROM MAGENX GITHUB REPOSITORY"
               wget -qO /etc/my.cnf https://raw.githubusercontent.com/magenx/magento-mysql/master/my.cnf/my.cnf
               echo
-			  #######################################################################################################################################
+                #######################################################################################################################################
                 echo
                  echo "---> WE NEED TO CORRECT YOUR innodb_buffer_pool_size"
                  IBPS=$(echo "${DEDICATED}*$(awk '/MemTotal/ { print $2 / (1024*1024)}' /proc/meminfo | cut -d'.' -f1)" | bc | xargs printf "%1.0f")
@@ -73,18 +73,20 @@ if [ "${repo_percona_install}" == "y" ];then
                  echo
                  echo "---> YOUR innodb_buffer_pool_size = ${IBPS}G"
                 echo
-              #######################################################################################################################################
+                #######################################################################################################################################
               echo
-			  MYSQL_ROOT_PASSGEN=$(head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9~!@$%&'  | fold -w 15 | head -n 1)
-			  echo "######################################################"
-              echo "---> MySQL ROOT password: ${MYSQL_ROOT_PASSGEN} "
+              MYSQL_ROOT_PASSGEN=$(head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9~!@$%&'  | fold -w 15 | head -n 1)
+              echo "######################################################"
+              echo "---> Generated MySQL root password: ${MYSQL_ROOT_PASSGEN} "
               echo "---> KEEP IT SAFE!"
-			  echo "######################################################"
+              echo "######################################################"
               echo
-              mysql_secure_installation
+                echo
+                mysql_secure_installation
+                echo
               echo
-			  echo
               wget -qO /etc/mysqltuner.pl https://raw.githubusercontent.com/major/MySQLTuner-perl/master/mysqltuner.pl
+              chmod +x /etc/mysqltuner.pl
               echo
               echo "---> PLEASE USE THIS SCRIPT TO CHECK AND FINETUNE YOUR DATABASE:"
               echo "perl /etc/mysqltuner.pl"
