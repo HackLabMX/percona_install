@@ -66,7 +66,7 @@ echo -n "---> START PERCONA REPOSITORY AND PERCONA DATABASE INSTALLATION? [y/n][
 read repo_percona_install
 if [ "${repo_percona_install}" == "y" ];then
   echo
-  rpm -qa | grep -qw bc || yum -q -y install bc
+  rpm -qa | grep -qw bc || yum -q -y install bc > /dev/null 2>&1
   echo "---> INSTALLATION OF PERCONA REPOSITORY:"
   echo
   echo -n "---> IS THIS SERVER DEDICATED FOR DATABASE ONLY?  [y/n][y]:"
