@@ -17,23 +17,23 @@ RESET="\e[0m"
 # quick-n-dirty settings
 function WHITETXT() {
         MESSAGE=${@:-"${RESET}Error: No message passed"}
-        echo -e "\t\t${WHITE}${MESSAGE}${RESET}"
+        echo -e "\t${WHITE}${MESSAGE}${RESET}"
 }
 function BLUETXT() {
         MESSAGE=${@:-"${RESET}Error: No message passed"}
-        echo -e "\t\t${BLUE}${MESSAGE}${RESET}"
+        echo -e "\t${BLUE}${MESSAGE}${RESET}"
 }
 function REDTXT() {
         MESSAGE=${@:-"${RESET}Error: No message passed"}
-        echo -e "\t\t${RED}${MESSAGE}${RESET}"
+        echo -e "\t${RED}${MESSAGE}${RESET}"
 } 
 function GREENTXT() {
         MESSAGE=${@:-"${RESET}Error: No message passed"}
-        echo -e "\t\t${GREEN}${MESSAGE}${RESET}"
+        echo -e "\t${GREEN}${MESSAGE}${RESET}"
 }
 function YELLOWTXT() {
         MESSAGE=${@:-"${RESET}Error: No message passed"}
-        echo -e "\t\t${YELLOW}${MESSAGE}${RESET}"
+        echo -e "\t${YELLOW}${MESSAGE}${RESET}"
 }
 function BLUEBG() {
         MESSAGE=${@:-"${RESET}Error: No message passed"}
