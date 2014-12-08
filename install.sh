@@ -40,6 +40,11 @@ function BLUEBG() {
         echo -e "${BLUEBG}${MESSAGE}${RESET}"
 }
 clear
+YELLOWTXT "#====================================================================#"
+YELLOWTXT "#  MagenX                                                            #"
+YELLOWTXT "#  PERCONA DATABASE INSTALLATION                                     #"
+YELLOWTXT "#  admin@magenx.com                                                  #"
+YELLOWTXT "#====================================================================#"
 echo
 # root?
 if [[ ${EUID} -ne 0 ]]; then
@@ -93,22 +98,17 @@ if [[ ${RESULT} == up ]]; then
   exit 1
 fi
 echo
-YELLOWTXT #====================================================================#
-YELLOWTXT #  MagenX                                                            #
-YELLOWTXT #  PERCONA DATABASE INSTALLATION                                     #
-YELLOWTXT #  admin@magenx.com                                                  #
-YELLOWTXT #====================================================================#
 echo
 echo "============================================================================="
 echo
-echo -n "---> START PERCONA REPOSITORY AND PERCONA DATABASE INSTALLATION? [y/n][n]:"
+echo -n "------> START PERCONA REPOSITORY AND PERCONA DATABASE INSTALLATION? [y/n][n]:"
 read repo_percona_install
 if [ "${repo_percona_install}" == "y" ];then
   echo
   yum -q -y install bc wget > /dev/null 2>&1
   YELLOWTXT "---> INSTALLATION OF PERCONA REPOSITORY:"
   echo
-  echo -n "---> IS THIS SERVER DEDICATED FOR DATABASE ONLY?  [y/n][y]:"
+  echo -n "------> IS THIS SERVER DEDICATED FOR DATABASE ONLY?  [y/n][y]:"
     read dedicated
     if [ "${dedicated}" == "y" ];then
        DEDICATED="0.8"
