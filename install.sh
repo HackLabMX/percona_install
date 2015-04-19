@@ -73,6 +73,8 @@ if [ "${TOTALMEM}" -gt "3000000" ]; then
   REDTXT "------> WARNING: YOU HAVE LESS THAN 3GB OF RAM"
 fi
 # some selinux, sir?
+if [ -f /etc/selinux/config ]
+then
 SELINUX=$(awk '/^SELINUX=/'  /etc/selinux/config)
 if [ "${SELINUX}" != "SELINUX=disabled" ]; then
   echo
@@ -82,6 +84,7 @@ if [ "${SELINUX}" != "SELINUX=disabled" ]; then
   exit 1
   else
   GREENTXT "------> PASS: SELINUX IS DISABLED"
+fi
 fi
 # network is up?
 host1=74.125.24.106
